@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WebStore</title>
+    <title>Pragprog Books Online Store</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,500&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <%= yield %>
+  <header class="main">
+    <div class="d-inline-flex">
+      <%= image_tag 'llama.svg', alt: 'The Pragmatic Bookshelf', size: 50 %>
+      <p class="align-text-middle" style="font-size: 30px; font-family: 'Exo 2', sans-serif">LLama Store</p>
+    </div>
+
+    <h1><%= @page_title %></h1>
+   </header>
+  <section class="content">
+    <nav class="side_nav">
+      <div id="cart" class="carts">
+        <%= render @cart if @cart && @cart.line_items.any? %>
+      </div>
+    <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/questions">Questions</a></li>
+    <li><a href="/news">News</a></li>
+    <li><a href="/contact">Contact</a></li>
+    </ul>
+    </nav>
+    <main class='<%= controller.controller_name %>'>
+      <%= yield %>
+    </main>
+    </section>
   </body>
 </html>
